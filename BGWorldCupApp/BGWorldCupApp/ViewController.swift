@@ -25,10 +25,14 @@ class ViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Team> = Team.fetchRequest()
 
         let sortTeamNameDescriptor = NSSortDescriptor(key: #keyPath(Team.teamName), ascending: true)
+        let sortZoneDescriptor = NSSortDescriptor(key: #keyPath(Team.qualifyingZone), ascending: true)
+        let sortScoreDescriptor = NSSortDescriptor(key: #keyPath(Team.wins), ascending: false)
 
-        fetchRequest.sortDescriptors = [sortTeamNameDescriptor]
+        fetchRequest.sortDescriptors = [sortZoneDescriptor, sortScoreDescriptor, sortTeamNameDescriptor]
 
-        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataStack.managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataStack.managedContext, sectionNameKeyPath: #keyPath(Team.qualifyingZone), cacheName: "worldCup")
+        fetchResultController.delegate = self
+        return fetchResultController
 
     }()
 
@@ -95,6 +99,19 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let team = fetchResultController.object(at: indexPath)
+        team.wins += 1
+        coreDataStack.saveContext()
+//        DispatchQueue.main.async { [weak self] in
+//            guard let `self` = self else { return }
+//            self.tableView.reloadData()
+//        }
+
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionInfo = fetchResultController.sections?[section]
+        return sectionInfo?.name
     }
 }
 
@@ -143,4 +160,51 @@ extension ViewController {
             print("Error importing teams: \(error)")
         }
     }
+}
+
+extension ViewController: NSFetchedResultsControllerDelegate {
+
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [indexPath!], with: .automatic)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+        case .move:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .update:
+            let cell = tableView.cellForRow(at: indexPath!) as! TeamCell
+            configure(cell: cell, for: indexPath!)
+        @unknown default:
+            print("unknown case")
+        }
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+
+        let indexSet = IndexSet(integer: sectionIndex)
+
+        switch type {
+        case .insert:
+            tableView.insertSections(indexSet, with: .automatic)
+        case .delete:
+            tableView.deleteSections(indexSet, with: .automatic)
+        default:
+            break
+        }
+    }
+
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+
 }
