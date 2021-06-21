@@ -48,6 +48,42 @@ class ViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
+
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            addButton.isEnabled = true
+        }
+    }
+
+    @IBAction func addTeam(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Add team", message: "Add Secret Team", preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+            textField.placeholder = "Team Name"
+        }
+
+        alert.addTextField { (textField) in
+            textField.placeholder = "Zone"
+        }
+
+        let actionAdd = UIAlertAction(title: "Add", style: .default) { [unowned self] (action) in
+
+            if let teamNameTextField = alert.textFields?.first,
+                let zoneTextField = alert.textFields?.last {
+                let team = Team(context: self.coreDataStack.managedContext)
+                team.teamName = teamNameTextField.text
+                team.qualifyingZone = zoneTextField.text
+                self.coreDataStack.saveContext()
+            }
+        }
+
+        let actionCancel = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+
+        alert.addAction(actionCancel)
+        alert.addAction(actionAdd)
+
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Internal
@@ -174,7 +210,7 @@ extension ViewController: NSFetchedResultsControllerDelegate {
 
         switch type {
         case .insert:
-            tableView.insertRows(at: [indexPath!], with: .automatic)
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .automatic)
         case .move:

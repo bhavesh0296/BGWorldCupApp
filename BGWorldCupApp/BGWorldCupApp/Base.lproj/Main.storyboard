@@ -86,7 +86,7 @@
                     <navigationItem key="navigationItem" title="World Cup!" id="iCC-sT-j1n">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="UfN-zz-Ah0">
                             <connections>
-                                <action selector="addTeam:" destination="YZf-ZS-YCg" id="hoU-CR-g5h"/>
+                                <action selector="addTeam:" destination="YZf-ZS-YCg" id="wiP-ES-81s"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
