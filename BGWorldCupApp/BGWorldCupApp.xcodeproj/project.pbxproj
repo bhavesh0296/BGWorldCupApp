@@ -13,6 +13,12 @@
 		40025ED0267FB4EB008EE111 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40025ECE267FB4EB008EE111 /* Main.storyboard */; };
 		40025ED2267FB4ED008EE111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40025ED1267FB4ED008EE111 /* Assets.xcassets */; };
 		40025ED5267FB4ED008EE111 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40025ED3267FB4ED008EE111 /* LaunchScreen.storyboard */; };
+		405F26682680E19D00BCDBD8 /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F26672680E19D00BCDBD8 /* TeamCell.swift */; };
+		405F266A2680E1BE00BCDBD8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F26692680E1BE00BCDBD8 /* CoreDataStack.swift */; };
+		405F266C2680E20A00BCDBD8 /* seed.json in Resources */ = {isa = PBXBuildFile; fileRef = 405F266B2680E20A00BCDBD8 /* seed.json */; };
+		405F266F2680E23300BCDBD8 /* BGWorldCupApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 405F266D2680E23300BCDBD8 /* BGWorldCupApp.xcdatamodeld */; };
+		405F26732680E48A00BCDBD8 /* Team+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F26712680E48A00BCDBD8 /* Team+CoreDataClass.swift */; };
+		405F26742680E48A00BCDBD8 /* Team+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F26722680E48A00BCDBD8 /* Team+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		40025ED1267FB4ED008EE111 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40025ED4267FB4ED008EE111 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40025ED6267FB4ED008EE111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		405F26672680E19D00BCDBD8 /* TeamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
+		405F26692680E1BE00BCDBD8 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		405F266B2680E20A00BCDBD8 /* seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = seed.json; sourceTree = "<group>"; };
+		405F266E2680E23300BCDBD8 /* BGWorldCupApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BGWorldCupApp.xcdatamodel; sourceTree = "<group>"; };
+		405F26712680E48A00BCDBD8 /* Team+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Team+CoreDataClass.swift"; sourceTree = "<group>"; };
+		405F26722680E48A00BCDBD8 /* Team+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Team+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,29 @@
 		40025EC7267FB4EB008EE111 /* BGWorldCupApp */ = {
 			isa = PBXGroup;
 			children = (
+				405F26702680E45800BCDBD8 /* NSManagedObject */,
 				40025EC8267FB4EB008EE111 /* AppDelegate.swift */,
 				40025ECA267FB4EB008EE111 /* SceneDelegate.swift */,
 				40025ECC267FB4EB008EE111 /* ViewController.swift */,
+				405F26692680E1BE00BCDBD8 /* CoreDataStack.swift */,
+				405F26672680E19D00BCDBD8 /* TeamCell.swift */,
 				40025ECE267FB4EB008EE111 /* Main.storyboard */,
 				40025ED1267FB4ED008EE111 /* Assets.xcassets */,
 				40025ED3267FB4ED008EE111 /* LaunchScreen.storyboard */,
+				405F266B2680E20A00BCDBD8 /* seed.json */,
+				405F266D2680E23300BCDBD8 /* BGWorldCupApp.xcdatamodeld */,
 				40025ED6267FB4ED008EE111 /* Info.plist */,
 			);
 			path = BGWorldCupApp;
+			sourceTree = "<group>";
+		};
+		405F26702680E45800BCDBD8 /* NSManagedObject */ = {
+			isa = PBXGroup;
+			children = (
+				405F26712680E48A00BCDBD8 /* Team+CoreDataClass.swift */,
+				405F26722680E48A00BCDBD8 /* Team+CoreDataProperties.swift */,
+			);
+			path = NSManagedObject;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +153,7 @@
 			files = (
 				40025ED5267FB4ED008EE111 /* LaunchScreen.storyboard in Resources */,
 				40025ED2267FB4ED008EE111 /* Assets.xcassets in Resources */,
+				405F266C2680E20A00BCDBD8 /* seed.json in Resources */,
 				40025ED0267FB4EB008EE111 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +165,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				405F26732680E48A00BCDBD8 /* Team+CoreDataClass.swift in Sources */,
+				405F266A2680E1BE00BCDBD8 /* CoreDataStack.swift in Sources */,
+				405F26742680E48A00BCDBD8 /* Team+CoreDataProperties.swift in Sources */,
+				405F26682680E19D00BCDBD8 /* TeamCell.swift in Sources */,
+				405F266F2680E23300BCDBD8 /* BGWorldCupApp.xcdatamodeld in Sources */,
 				40025ECD267FB4EB008EE111 /* ViewController.swift in Sources */,
 				40025EC9267FB4EB008EE111 /* AppDelegate.swift in Sources */,
 				40025ECB267FB4EB008EE111 /* SceneDelegate.swift in Sources */,
@@ -338,6 +370,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		405F266D2680E23300BCDBD8 /* BGWorldCupApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				405F266E2680E23300BCDBD8 /* BGWorldCupApp.xcdatamodel */,
+			);
+			currentVersion = 405F266E2680E23300BCDBD8 /* BGWorldCupApp.xcdatamodel */;
+			path = BGWorldCupApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 40025EBD267FB4EB008EE111 /* Project object */;
 }
