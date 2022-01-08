@@ -10,7 +10,7 @@ This is the World Cup Soccer app where on click of Cell row that team win accord
 <kbd>
 <img src="Screenshot/WorldCup.gif" alt="WorldCup" width="250" /> 
 </kbd>
-
+&nbsp; &nbsp; &nbsp; &nbsp;
 <kbd>
 <img src="Screenshot/AddingTeam.gif" alt="AddingTeam" width="250" /> 
 </kbd>
